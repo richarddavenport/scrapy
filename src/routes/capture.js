@@ -1,7 +1,7 @@
-import { RequestHandler } from '@sveltejs/kit';
 import * as playwright from 'playwright';
+// import chromium from 'chrome-aws-lambda';
 
-export const get: RequestHandler = async ({ query }) => {
+export const get = async ({ query }) => {
   const queryUrl = query.get('url');
   const queryFullscreen = query.get('fullscreen');
   const queryWidth = query.get('width');
