@@ -1,4 +1,4 @@
-import * as playwright from 'playwright';
+import * as playwright from 'playwright-core';
 // import chromium from 'chrome-aws-lambda';
 
 export const get = async ({ query }) => {
