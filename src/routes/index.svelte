@@ -1,143 +1,59 @@
-<script context="module">
-  export async function load({ fetch }) {
-    const res = await fetch('https://api.spacex.land/graphql', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        query: `{
-            launchesPast(limit: 10) {
-                mission_name
-                launch_date_local
-                links {
-                    video_link
-                }
-            }
-        }`
-      })
-    });
-
-    if (res.ok) {
-      const { data } = await res.json();
-      return {
-        props: {
-          launches: data.launchesPast
-        }
-      };
-    }
-
-    return {
-      status: res.status,
-      error: new Error(`Error fetching GraphQL data`)
-    };
-  }
-</script>
-
 <script>
-  export let launches;
+  let url;
+  let fullscreen;
+  let width = 1600;
+  let height = 1200;
+  let imgBase64;
+  let fetching = false;
+
+  async function onSubmit() {
+    fetching = true;
+    try {
+      new URL(url);
+    } catch (error) {
+      alert('try entering a valid URL');
+    }
+    try {
+      const res = await fetch(
+        `capture?url=${encodeURIComponent(
+          url
+        )}&fullscreen=${fullscreen}&width=${width}&height=${height}`
+      );
+      const body = await res.json();
+      imgBase64 = body.img || null;
+    } catch (error) {
+      alert('something bad happened! try again...');
+    }
+    fetching = false;
+  }
 </script>
 
-<h1>SpaceX Launches</h1>
-<p>
-  This is an example <a
-    class="link"
-    target="_blank"
-    rel="noopener"
-    href="https://svelte.dev">SvelteKit</a
-  >
-  application fetching GraphQL data from the public
-  <a
-    class="link"
-    target="_blank"
-    rel="noopener"
-    href="https://api.spacex.land/graphql">SpaceX API</a
-  >. View source on
-  <a
-    class="link"
-    target="_blank"
-    rel="noopener"
-    href="https://github.com/leerob/sveltekit-graphql">GitHub</a
-  >.
-</p>
-<ul>
-  {#each launches as launch}
-    <li>
-      <a
-        class="card-link"
-        target="_blank"
-        rel="noopener"
-        href={launch.links.video_link}
-      >
-        <h2>{launch.mission_name}</h2>
-        <p>{new Date(launch.launch_date_local).toLocaleString()}</p>
-      </a>
-    </li>
-  {/each}
-</ul>
-<footer>
-  <p>
-    Created with <a
-      class="link"
-      target="_blank"
-      rel="noopener"
-      href="https://svelte.dev">SvelteKit</a
-    >
-    and deployed with
-    <a class="link" target="_blank" rel="noopener" href="https://vercel.com"
-      >▲ Vercel</a
-    >.
-  </p>
-</footer>
+<form on:submit|preventDefault={onSubmit}>
+  <label style="display:block">
+    URL
+    <input type="text" bind:value={url} />
+  </label>
 
-<style>
-  :global(body) {
-    font-family: Menlo, Consolas, Monaco, Liberation Mono, Lucida Console,
-      monospace;
-    background-color: #fafafa;
-    max-width: 650px;
-    margin: 32px auto;
-    padding: 0 16px;
-  }
-  h1 {
-    letter-spacing: -0.025em;
-  }
-  h2 {
-    font-size: 18px;
-  }
-  ul {
-    list-style: none;
-    padding: 0;
-    margin-top: 32px;
-  }
-  li {
-    border: 1px solid #eaeaea;
-    border-radius: 8px;
-    margin-bottom: 16px;
-    background-color: white;
-    transition: 0.15s box-shadow ease-in-out;
-  }
-  li:hover {
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12);
-  }
-  p {
-    color: #666;
-    font-size: 14px;
-    line-height: 1.75;
-  }
-  a {
-    color: #0070f3;
-    text-decoration: none;
-  }
-  .card-link {
-    padding: 8px 24px;
-    display: block;
-  }
-  .link {
-    transition: 0.15s text-decoration ease-in-out;
-    color: #0761d1;
-  }
-  .link:hover {
-    text-decoration: underline;
-  }
-</style>
+  <label style="display:block">
+    Full Screen?
+    <input type="checkbox" bind:checked={fullscreen} />
+  </label>
+
+  <label style="display:block">
+    Viewport Width
+    <input type="number" bind:value={width} />
+  </label>
+  <label style="display:block">
+    Viewport Height
+    <input type="number" bind:value={height} />
+  </label>
+
+  <button disabled={fetching}>Submit</button>
+  {#if fetching}
+    <span>taking a screenshot of your junk...</span>
+  {/if}
+</form>
+
+{#if imgBase64}
+  <img src="data:image/png;base64,{imgBase64}" alt={url} />
+{/if}
