@@ -1,5 +1,6 @@
-import * as playwright from 'playwright-core';
-// import chromium from 'chrome-aws-lambda';
+import { createRequire } from 'module';
+const require = createRequire(import.meta.url);
+const { chromium } = require('playwright-core');
 
 export const get = async ({ query }) => {
   const queryUrl = query.get('url');
@@ -8,7 +9,7 @@ export const get = async ({ query }) => {
   const queryHeight = query.get('height');
 
   const url = new URL(queryUrl);
-  const browser = await playwright.chromium.launch();
+  const browser = await chromium.launch();
   const page = await browser.newPage();
   await page.setViewportSize({ width: +queryWidth, height: +queryHeight });
   await page.goto(url.toString());
