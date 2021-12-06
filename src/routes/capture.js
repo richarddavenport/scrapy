@@ -1,8 +1,6 @@
-import { createRequire } from 'module';
-const require = createRequire(import.meta.url);
-const { chromium } = require('playwright-core');
-
 export const get = async ({ query }) => {
+  const { chromium } = await import('playwright-core');
+
   const queryUrl = query.get('url');
   const queryFullscreen = query.get('fullscreen');
   const queryWidth = query.get('width');

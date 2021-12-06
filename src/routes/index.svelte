@@ -1,5 +1,5 @@
 <script>
-  let url;
+  let url = 'https://spotify.com';
   let fullscreen;
   let width = 1600;
   let height = 1200;
