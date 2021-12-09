@@ -1,0 +1,8 @@
+{
+  "compilerOptions": {
+    "module": "es2022" /* Specify what module code is generated. */,
+    "isolatedModules": true /* Ensure that each file can be safely transpiled without relying on other imports. */,
+    "esModuleInterop": true /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables `allowSyntheticDefaultImports` for type compatibility. */,
+    "moduleResolution": "Node"
+  }
+}

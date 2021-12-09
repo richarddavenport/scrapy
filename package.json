@@ -22,5 +22,8 @@
     "singleQuote": true,
     "tabWidth": 2,
     "trailingComma": "none"
+  },
+  "dependencies": {
+    "@netlify/functions": "^0.10.0"
   }
 }

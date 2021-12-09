@@ -23,6 +23,13 @@
   "resolved" "https://registry.npmjs.org/@iarna/toml/-/toml-2.2.5.tgz"
   "version" "2.2.5"
 
+"@netlify/functions@^0.10.0":
+  "integrity" "sha512-NNFADTPnokuoMY1OUhaXlE/Jrzk5lHOl1uB4L/8pw1UJ/CaectZJACMExijbJnqaKIhOQG0WmbBQUh1lgnK/Qg=="
+  "resolved" "https://registry.npmjs.org/@netlify/functions/-/functions-0.10.0.tgz"
+  "version" "0.10.0"
+  dependencies:
+    "is-promise" "^4.0.0"
+
 "@rollup/pluginutils@^4.1.1":
   "integrity" "sha512-clDjivHqWGXi7u+0d2r2sBi4Ie6VLEAzWMIkvJLnDmxoOhBYOTfzGbOQBA32THHm11/LiJbd01tJUpJsbshSWQ=="
   "resolved" "https://registry.npmjs.org/@rollup/pluginutils/-/pluginutils-4.1.1.tgz"
@@ -485,6 +492,11 @@
   "version" "2.8.0"
   dependencies:
     "has" "^1.0.3"
+
+"is-promise@^4.0.0":
+  "integrity" "sha512-hvpoI6korhJMnej285dSg6nu1+e6uxs7zG3BYAm5byqDsgJNWwxzM6z6iZiAgQR4TJ30JmBTOwqZUw3WlyH3AQ=="
+  "resolved" "https://registry.npmjs.org/is-promise/-/is-promise-4.0.0.tgz"
+  "version" "4.0.0"
 
 "isarray@~1.0.0":
   "integrity" "sha1-u5NdSFgsuhaMBoNJV6VKPgcSTxE="

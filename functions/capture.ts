@@ -1,6 +1,8 @@
+import { Handler } from "@netlify/functions";
 import * as playwright from 'playwright-core';
 
-export const get = async ({ query }) => {
+const handler: Handler = async (event, context) => {
+  const query = new URLSearchParams(event.rawQuery);
   const queryUrl = query.get('url');
   const queryFullscreen = query.get('fullscreen');
   const queryWidth = query.get('width');
@@ -18,8 +20,11 @@ export const get = async ({ query }) => {
   await browser.close();
 
   return {
-    body: {
+    statusCode: 200,
+    body: JSON.stringify({
       img: buffer.toString('base64')
-    }
+    })
   };
 };
+
+export { handler };
