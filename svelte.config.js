@@ -7,7 +7,7 @@ export default {
     vite: {
       ssr: {
         // noExternal: ["electron"],
-        external: ['electron']
+        external: ['electron', 'ws']
       }
     }
   }
