@@ -15,7 +15,8 @@
     "electron": "^16.0.4",
     "playwright-core": "^1.17.1",
     "prettier": "^2.3.2",
-    "prettier-plugin-svelte": "^2.3.1"
+    "prettier-plugin-svelte": "^2.3.1",
+    "ws": "^8.3.0"
   },
   "prettier": {
     "arrowParens": "always",
