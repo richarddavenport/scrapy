@@ -15,9 +15,10 @@
     }
     try {
       const res = await fetch(
-        `capture?url=${encodeURIComponent(
-          url
-        )}&fullscreen=${fullscreen}&width=${width}&height=${height}`
+        '.netlify/functions/' +
+          `capture?url=${encodeURIComponent(
+            url
+          )}&fullscreen=${fullscreen}&width=${width}&height=${height}`
       );
       const body = await res.json();
       imgBase64 = body.img || null;
