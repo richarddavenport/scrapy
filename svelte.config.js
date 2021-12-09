@@ -6,9 +6,9 @@ export default {
     target: '#svelte',
     vite: {
       ssr: {
-        noExternal: ["electron"],
-        // external: ['whatwg-url', 'node-fetch']
-      },
-    },
-  },
+        // noExternal: ["electron"],
+        external: ['electron']
+      }
+    }
+  }
 };
