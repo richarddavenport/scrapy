@@ -1,14 +1,15 @@
-import vercel from '@sveltejs/adapter-vercel';
+// import adapter from '@sveltejs/adapter-vercel';
+import adapter from '@sveltejs/adapter-netlify';
 
 export default {
   kit: {
-    adapter: vercel(),
+    adapter: adapter(),
     target: '#svelte',
-    vite: {
-      ssr: {
-        // noExternal: ["electron"],
-        external: ['electron', 'ws']
-      }
-    }
+    // vite: {
+    //   ssr: {
+    //     // noExternal: ["electron"],
+    //     external: ['electron', 'ws']
+    //   }
+    // }
   }
 };
