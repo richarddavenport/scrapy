@@ -4,14 +4,17 @@
   "scripts": {
     "dev": "svelte-kit dev",
     "build": "svelte-kit build --verbose",
-    "preview": "svelte-kit preview"
+    "preview": "svelte-kit preview",
+    "start": "node ./build/index.js"
   },
   "devDependencies": {
     "@sveltejs/adapter-netlify": "^1.0.0-next.35",
+    "@sveltejs/adapter-node": "^1.0.0-next.55",
     "@sveltejs/adapter-vercel": "^1.0.0-next.31",
     "@sveltejs/kit": "^1.0.0-next.201",
     "electron": "^16.0.4",
     "playwright-core": "^1.17.1",
+    "polka": "^0.5.2",
     "prettier": "^2.5.1",
     "prettier-plugin-svelte": "^2.5.1",
     "svelte": "^3.38.3",
@@ -24,6 +27,7 @@
     "trailingComma": "none"
   },
   "dependencies": {
-    "@netlify/functions": "^0.10.0"
+    "puppeteer": "^12.0.1",
+    "puppeteer-core": "^12.0.1"
   }
 }
