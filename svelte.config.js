@@ -5,11 +5,10 @@ export default {
   kit: {
     adapter: adapter(),
     target: '#svelte',
-    // vite: {
-    //   ssr: {
-    //     // noExternal: ["electron"],
-    //     external: ['electron', 'ws']
-    //   }
-    // }
+    vite: {
+      ssr: {
+        external: ['electron', 'ws']
+      }
+    }
   }
 };
