@@ -6,7 +6,6 @@ export default {
     target: '#svelte',
     vite: {
       ssr: {
-        // noExternal: ["electron"],
         external: ['electron', 'ws']
       }
     }
