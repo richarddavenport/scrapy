@@ -1,20 +1,20 @@
-import * as puppeteer from 'puppeteer';
+import * as playwright from 'playwright';
+import type { RequestHandler } from '@sveltejs/kit';
 
-export const get = async ({query}) => {
-  const queryUrl = query.get('url');
-  const queryFullscreen = query.get('fullscreen');
-  const queryWidth = query.get('width');
-  const queryHeight = query.get('height');
-
-  const url = new URL(queryUrl);
-  const browser = await puppeteer.launch();
+export const get: RequestHandler = async ({ query }) => {
+  const url = new URL(query.get('url'));
+  const browser = await playwright.chromium.launch();
   const page = await browser.newPage();
-  await page.setViewport({ width: +queryWidth, height: +queryHeight });
+  await page.setViewportSize({
+    width: +query.get('width'),
+    height: +query.get('height')
+  });
   await page.goto(url.toString());
 
   const buffer = await page.screenshot({
-    fullPage: queryFullscreen === 'true'
+    fullPage: query.get('fullscreen') == 'true'
   });
+
   await browser.close();
 
   return {
